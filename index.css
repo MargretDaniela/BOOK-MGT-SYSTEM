@@ -1,0 +1,20 @@
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-container i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.search-input {
+    width: 250px;
+    padding: 10px 10px 10px 35px; /* Space for the icon */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
