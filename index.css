@@ -18,3 +18,80 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(255, 255, 255);
+}
+
+/* Sidebar */
+.left-side {
+    background-color: rgba(109, 124, 141, 0.378);
+    width: 200px;
+    height: 100vh;
+    padding: 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+/* Collapsed Sidebar */
+.left-side.collapsed {
+    width: 80px;
+}
+
+/* Toggle Button */
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Style for the list items */
+ul.nav {
+    padding-left: 0;
+    margin-top: 10px;
+    list-style: none;
+}
+
+/* Nav Items Styling */
+ul.nav .nav-item {
+    background-color: rgba(92, 152, 216, 0.668);
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    min-width: 50px;
+}
+
+/* Hide Text When Collapsed */
+.left-side.collapsed .nav-text {
+    display: none;
+    
+}
+
+/* Icon Styling */
+ul.nav .nav-item i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+/* Align Items in a Column When Collapsed */
+.left-side.collapsed .nav-item {
+    justify-content: center;
+    width: 50px; /* Only icon background remains */
+    padding: 15px 0;
+}
+
+/* Optional: Add some margin to buttons for separation */
+ul.nav .nav-item button {
+    margin: 5px;
+}
+
