@@ -113,6 +113,11 @@ ul.nav .nav-item i {
 ul.nav .nav-item button {
     margin: 5px;
 }
+
+span{
+    color: black;
+}
+=======
 .navbar-brand{
     font-size: 200%;
     margin-left: 250px;
@@ -166,6 +171,7 @@ select.form-control {
     border-radius: 5px;
     width: 100%;
 }
+
 
 
 
