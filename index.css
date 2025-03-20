@@ -86,7 +86,7 @@ ul.nav .nav-item i {
 /* Align Items in a Column When Collapsed */
 .left-side.collapsed .nav-item {
     justify-content: center;
-    width: 50px; /* Only icon background remains */
+    width: 50px; 
     padding: 15px 0;
 }
 
@@ -94,4 +94,6 @@ ul.nav .nav-item i {
 ul.nav .nav-item button {
     margin: 5px;
 }
-
+span{
+    color: black;
+}

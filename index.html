@@ -35,40 +35,62 @@
         <button class="toggle-btn" onclick="toggleSidebar()">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-book" style="color: #087615;"></i>
-                    <span class="nav-text">All Books</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-heart" style="color: #087615;"></i>
-                    <span class="nav-text">Favourites</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-heart-crack" style="color: #087615;"></i>
-                    <span class="nav-text">Unfavourite</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-check" style="color: #087615;"></i>
-                    <span class="nav-text">Read</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-battery-empty" style="color: #087615;"></i>
-                    <span class="nav-text">Unread</span>
-                </a>
-            </li>
-        </ul>
+      <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div >
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#allBooks">
+                            <i class="fa-solid fa-book" style="color: #087615;"></i>
+                            <span class="nav-text">All Books</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#favorites">
+                            <i class="fa-solid fa-heart" style="color: #087615;"></i>
+                            <span class="nav-text">Favourites</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#unfavourite">
+                            <i class="fa-solid fa-heart-crack" style="color: #087615;"></i>
+                            <span class="nav-text">Unfavourite</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#read">
+                            <i class="fa-solid fa-check" style="color: #087615;"></i>
+                            <span class="nav-text">Read</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#unread">
+                            <i class="fa-solid fa-battery-empty" style="color: #087615;"></i>
+                            <span class="nav-text">Unread</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+           
+        </div>
+         <!-- Tab Content -->
+         <div class="col-md-9 col-lg-10 p-3">
+            <div class="tab-content">
+                <div id="allBooks" class="tab-pane fade show active">
+                </div>
+                <div id="favorites" class="tab-pane fade">
+                </div>
+                <div id="unfavourite" class="tab-pane fade">
+                </div>
+                <div id="read" class="tab-pane fade">
+                </div>
+                <div id="unread" class="tab-pane fade">
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
