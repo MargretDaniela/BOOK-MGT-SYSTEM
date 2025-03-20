@@ -3,34 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Book Mgt system</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./index.css">
 <body>
-    <nav>
-        <div>
-            <nav class="navbar navbar-light bg-light">
-                <b><a class="navbar-brand" style="align-items: center; font-size: 250%;margin-left: 100px;">BOOK MANAGEMENT SYSTEM</a></b>
-                <form class="form-inline" style="display: flex; align-items: center;">
-                  <div class="search-container">
+    <nav class="navbar navbar-light bg-light">
+        <b><a class="navbar-brand">BOOK MANAGEMENT SYSTEM</a></b>
+            <form class="form-inline" style="display: flex; align-items: center; width: 100%; justify-content: center;">
+                <div style="width: 500px;"></div> 
+                <div class="search-container" style="display: flex; justify-content: center; flex-grow: 1;">
                     <i class="fa-solid fa-magnifying-glass"></i> 
-                    <input class="search-input " style="margin-right: 170px;"
-                  type="search" placeholder="Search by title or author" aria-label="Search">
-                  </div>
-                  <div>
-                    <button class="btn btn-outline-success my-2 my-sm-0" 
-                        style="padding: 6px 12px; font-size: 16px; white-space: nowrap; margin-right: 50px;" 
-                        type="submit">
-                        + Add Book
-                    </button>
+                    <input class="search-input" type="search" placeholder="Search by title or author" aria-label="Search">
                 </div>
-            
-                </form>
-              </nav>
-        </div>
+            <button class="btn btn-outline-success my-2 my-sm-0" 
+                style="padding: 6px 12px; font-size: 16px; white-space: nowrap; " 
+                type="submit">
+                + Add Book
+            </button>
+        </form>
     </nav>
-
     <div class="left-side" id="sidebar">
         <button class="toggle-btn" onclick="toggleSidebar()">
             <i class="fa-solid fa-bars"></i>
@@ -91,6 +83,54 @@
             </div>
         </div>
     </div>
+
+  </div>
+  <fieldset class="forms">
+    <form class="needs-validation" novalidate>
+        <div class="form-header">  <!-- Add this wrapper -->
+            <h3>Edit a Book</h3>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationTooltip01">Title</label>
+                <input type="text" class="form-control" id="validationTooltip01" placeholder="Title of the book " value="All is gold" required>
+            </div>
+        </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip02">Author</label>
+            <input type="text" class="form-control" id="validationTooltip02" placeholder="Authors name" value="Daniels Wright" required>
+            <div class="valid-tooltip">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip02">Genre</label>
+            <input type="text" class="form-control" id="validationTooltip02" placeholder="Genre" value="Anger and stress" required>
+            <div class="valid-tooltip">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip02">Status</label>
+            <select class="form-control" id="validationTooltip02">
+                <option>Unread</option>
+                <option>Read</option>
+            </select>
+            <div class="valid-tooltip">
+                Looks good!
+            </div>
+        </div>        
+          </div>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile"></label>
+          </div>
+         <br>
+         <button class="btn btn-primary" type="submit">Update Book</button>
+      </form>
+  </fieldset>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
