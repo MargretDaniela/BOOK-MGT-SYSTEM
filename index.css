@@ -13,6 +13,7 @@
     transform: translateY(-50%);
     color: gray;
     font-size: 18px;
+    flex-grow: 1;
 }
 
 .search-input {
@@ -22,6 +23,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
+    flex-grow: 1;
 }
 
 .search-input::placeholder {
@@ -34,35 +36,46 @@
 }
 
 
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to top, rgb(248, 248, 248), rgb(110, 194, 228));
+    }
+
+
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     
 }
+
 .left-side {
-    background-color: rgba(109, 124, 141, 0.378);
+    background-color: rgb(28, 28, 56) !important;
     width: 200px;
     height: calc(100vh - 60px); 
     padding: 25px;
     position: fixed;
-    top: 60px; 
+    top: 120px; 
     left: 0;
     transition: width 0.3s ease-in-out;
     overflow: hidden;
 }
 .navbar {
-    height: 60px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f8f9fa; 
+    background-color: #061b30; 
     padding: 10px 20px;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000; 
+    background-color: rgb(28, 28, 56) !important; 
 }
 .left-side.collapsed {
     width: 80px;
@@ -81,10 +94,10 @@ ul.nav {
     list-style: none;
 }
 ul.nav .nav-item {
-    background-color: rgba(92, 152, 216, 0.668);
+    background-color: white;
     margin-bottom: 10px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     display: flex;
     align-items: center;
     min-width: 50px;
@@ -108,11 +121,6 @@ ul.nav .nav-item button {
 
 span{
     color: black;
-}
-
-.navbar-brand{
-    font-size: 200%;
-    margin-left: 250px;
 }
 .forms {
     max-width: 450px; 
@@ -144,17 +152,6 @@ span{
     font-weight: bold;
     border-bottom: 1px solid #ddd; 
 }
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #333;
-}
-
-.close-btn:hover {
-    color: red;
-}
 select.form-control {
     appearance: none;
     background-color: #fff;
@@ -163,7 +160,13 @@ select.form-control {
     border-radius: 5px;
     width: 100%;
 }
+.navbar-brand{
+    color: white;
+    font-size: 250%;
+    display: block; 
+    text-align: center;
+}
+.add-book{
+    float: left;
 
-
-
-
+}
