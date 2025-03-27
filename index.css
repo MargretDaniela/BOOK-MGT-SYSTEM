@@ -160,8 +160,7 @@ select.form-control {
     border-radius: 5px;
     width: 100%;
 }
-.navbar-brand{
-    color: white !important; 
+.navbar-brand{ 
     font-size: 250%;
     display: block; 
     text-align: center;
