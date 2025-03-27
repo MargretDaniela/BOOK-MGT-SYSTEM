@@ -5,14 +5,14 @@ function toggleSidebar() {
 
 document.addEventListener("DOMContentLoaded", function () {
     const bookList = document.getElementById("bookList");
-    const bookForm = document.querySelector(".needs-validation"); 
+    const bookForm = document.querySelector(".needs-validation");
     const titleInput = document.getElementById("bookTitle");
     const authorInput = document.getElementById("bookAuthor");
     const genreInput = document.getElementById("bookGenre");
     const statusInput = document.getElementById("bookStatus");
     const fileInput = document.getElementById("customFile");
 
-    let books = JSON.parse(localStorage.getItem("books")) || []; 
+    let books = JSON.parse(localStorage.getItem("books")) || [];
 
     function addBook(event) {
         event.preventDefault(); // Prevent page refresh
@@ -33,29 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
             const reader = new FileReader();
             reader.onload = function () {
                 const cover = reader.result;  // Get Base64 string
-
                 saveBook(title, author, genre, status, cover, false); // New books are not favorite by default
-
-                saveBook(title, author, genre, status, cover);
-
             };
             reader.readAsDataURL(file);  // Convert image to Base64
         } else {
             const cover = "https://via.placeholder.com/150";  // Default image
-
             saveBook(title, author, genre, status, cover, false);
         }
     }
 
     function saveBook(title, author, genre, status, cover, isFavorite) {
         books.push({ title, author, genre, status, cover, isFavorite });
-
-            saveBook(title, author, genre, status, cover);
-        }
-    }
-
-    function saveBook(title, author, genre, status, cover) {
-        books.push({ title, author, genre, status, cover });
 
         localStorage.setItem("books", JSON.stringify(books));  // Save updated books list
         displayBooks();
@@ -95,7 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     window.deleteBook = function (index) {
-
         const confirmation = confirm("Are you sure you want to delete this book?");
         if (confirmation) {
             books.splice(index, 1); // Remove book
@@ -109,13 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("books", JSON.stringify(books)); // Update local storage
         displayBooks(); // Refresh book list
     };
-
-
-        books.splice(index, 1); // Remove book
-        localStorage.setItem("books", JSON.stringify(books)); // Update local storage
-        displayBooks();
-    };
-
 
     // Listen for form submission
     bookForm.addEventListener("submit", addBook);
