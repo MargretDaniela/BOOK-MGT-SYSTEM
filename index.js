@@ -3,7 +3,6 @@ function toggleSidebar() {
     sidebar.classList.toggle("collapsed");
 }
 
-v
 document.addEventListener("DOMContentLoaded", function () {
     const bookList = document.getElementById("bookList");
     const bookForm = document.querySelector(".needs-validation"); 
