@@ -161,13 +161,15 @@ select.form-control {
     width: 100%;
 }
 .navbar-brand{
-    color: white !important; 
+
+    color: white !important;
     font-size: 250%;
     display: block; 
     text-align: center;
 }
 .add-book{
     float: left;
+
 }
 #bookList {
     display: flex;
@@ -175,6 +177,7 @@ select.form-control {
     margin-left: 50px;
     margin-top: 65px;
     padding: 20px;
+
 
 }
 
