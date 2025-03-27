@@ -2,6 +2,7 @@
 //     let sidebar = document.getElementById("sidebar");
 //     sidebar.classList.toggle("collapsed");
 // }
+
 // document.addEventListener("DOMContentLoaded", function () {
 //     const bookList = document.getElementById("bookList");
 //     const bookForm = document.querySelector(".needs-validation"); 
@@ -81,6 +82,7 @@
 
 
 
+
 // document.addEventListener("DOMContentLoaded", function () {
 //     const bookList = document.getElementById("bookList");
 //     const bookForm = document.querySelector(".needs-validation"); 
@@ -100,6 +102,25 @@
 //         const genre = genreInput.value.trim();
 //         const status = statusInput.value;
 
+
+//         if (!title || !author || !genre) {
+//             alert("Please fill in all fields before adding a book.");
+//             return;
+//         }
+
+//         const file = fileInput.files[0];
+
+//         if (file) {
+//             const reader = new FileReader();
+//             reader.onload = function () {
+//                 const cover = reader.result;  // Get Base64 string
+//                 saveBook(title, author, genre, status, cover);
+//             };
+//             reader.readAsDataURL(file);  // Convert image to Base64
+//         } else {
+//             const cover = "https://via.placeholder.com/150";  // Default image
+//             saveBook(title, author, genre, status, cover);
+
 //         const file = fileInput.files[0];
 
 //         if (title && author && genre) {
@@ -116,6 +137,7 @@
 //             }
 //         } else {
 //             alert("Please fill in all fields before adding a book.");
+
 //         }
 //     }
 
@@ -163,6 +185,14 @@
 //     // Listen for form submission
 //     bookForm.addEventListener("submit", addBook);
 // });
+
+
+function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("collapsed");
+}
+
+v
 document.addEventListener("DOMContentLoaded", function () {
     const bookList = document.getElementById("bookList");
     const bookForm = document.querySelector(".needs-validation"); 
@@ -193,17 +223,30 @@ document.addEventListener("DOMContentLoaded", function () {
             const reader = new FileReader();
             reader.onload = function () {
                 const cover = reader.result;  // Get Base64 string
+
+                saveBook(title, author, genre, status, cover, false); // New books are not favorite by default
+
                 saveBook(title, author, genre, status, cover);
+
             };
             reader.readAsDataURL(file);  // Convert image to Base64
         } else {
             const cover = "https://via.placeholder.com/150";  // Default image
+
+            saveBook(title, author, genre, status, cover, false);
+        }
+    }
+
+    function saveBook(title, author, genre, status, cover, isFavorite) {
+        books.push({ title, author, genre, status, cover, isFavorite });
+
             saveBook(title, author, genre, status, cover);
         }
     }
 
     function saveBook(title, author, genre, status, cover) {
         books.push({ title, author, genre, status, cover });
+
         localStorage.setItem("books", JSON.stringify(books));  // Save updated books list
         displayBooks();
         bookForm.reset();
@@ -224,7 +267,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p class="card-text">Author: ${book.author}</p>
                         <p class="card-text"><strong>Genre:</strong> ${book.genre}</p>
                         <p class="card-text"><strong>Status:</strong> ${book.status}</p>
+                        <p class="card-text"><strong>Favorite:</strong> ${book.isFavorite ? "Yes" : "No"}</p>
                         <button class="btn btn-danger" onclick="deleteBook(${index})">Delete</button>
+                        <button class="btn btn-${book.isFavorite ? 'secondary' : 'success'}" onclick="toggleFavorite(${index})">
+                            ${book.isFavorite ? "Remove Favorite" : "Mark as Favorite"}
+                        </button>
                     </div>
                 </div>
             `;
@@ -238,10 +285,27 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     window.deleteBook = function (index) {
+
+        const confirmation = confirm("Are you sure you want to delete this book?");
+        if (confirmation) {
+            books.splice(index, 1); // Remove book
+            localStorage.setItem("books", JSON.stringify(books)); // Update local storage
+            displayBooks();
+        }
+    };
+
+    window.toggleFavorite = function (index) {
+        books[index].isFavorite = !books[index].isFavorite; // Toggle favorite status
+        localStorage.setItem("books", JSON.stringify(books)); // Update local storage
+        displayBooks(); // Refresh book list
+    };
+
+
         books.splice(index, 1); // Remove book
         localStorage.setItem("books", JSON.stringify(books)); // Update local storage
         displayBooks();
     };
+
 
     // Listen for form submission
     bookForm.addEventListener("submit", addBook);

@@ -162,7 +162,12 @@ select.form-control {
 }
 .navbar-brand{
 
+
+    color: white !important; 
+
+
     color: white !important;
+
     font-size: 250%;
     display: block; 
     text-align: center;
@@ -180,6 +185,18 @@ select.form-control {
 
 
 }
+
+#bookList {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 50px;
+
+    margin-top: 65px;
+    padding: 20px;
+
+
+}
+
 
 #bookList .col {
     flex: 1 1 300px; /* Ensures equal card spacing */
