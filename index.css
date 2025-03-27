@@ -161,20 +161,13 @@ select.form-control {
     width: 100%;
 }
 .navbar-brand{
-
-
-    color: white !important; 
-
-
     color: white !important;
-
     font-size: 250%;
     display: block; 
     text-align: center;
 }
 .add-book{
     float: left;
-
 }
 #bookList {
     display: flex;
@@ -182,22 +175,14 @@ select.form-control {
     margin-left: 50px;
     margin-top: 65px;
     padding: 20px;
-
-
 }
-
 #bookList {
     display: flex;
     flex-wrap: wrap;
     margin-left: 50px;
-
     margin-top: 65px;
     padding: 20px;
-
-
 }
-
-
 #bookList .col {
     flex: 1 1 300px; /* Ensures equal card spacing */
     max-width: 300px; /* Prevents too large cards */
