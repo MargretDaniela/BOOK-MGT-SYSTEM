@@ -161,12 +161,11 @@ select.form-control {
     width: 100%;
 }
 .navbar-brand{
-    color: white;
+    color: white !important;
     font-size: 250%;
     display: block; 
     text-align: center;
 }
 .add-book{
     float: left;
-
 }
