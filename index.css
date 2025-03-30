@@ -184,7 +184,7 @@ select.form-control {
     padding: 20px;
 }
 #bookList .col {
-    flex: 1 1 300px; /* Ensures equal card spacing */
-    max-width: 300px; /* Prevents too large cards */
-    margin: 10px; /* Spacing between cards */
+    flex: 1 1 300px; 
+    max-width: 300px;
+    margin: 10px; 
 }
