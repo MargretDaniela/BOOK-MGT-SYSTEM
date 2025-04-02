@@ -10,9 +10,8 @@
 </head>
 <body>
     <!-- Top Navigation Bar -->
-    <div>
+    <div class="">
         <nav class="navbar navbar-light" style="padding: 10px;  display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <b><a class="navbar-brand">BOOK MANAGEMENT SYSTEM</a></b>
             <div style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 800px; margin-top: 10px;">
                 <div class="search-container" style="display: flex; align-items: center; flex-grow: 1; margin-right: 10px;">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -31,13 +30,28 @@
             </div>
         </nav>
     </div>
-
-            
-        </form>
-    </nav>
-
+    <div class="middle">
+        <b><a class="navbar-brand"><b>BOOK MANAGEMENT SYSTEM</b></a></b>
+        <div class="content">
+            <div class="book-left">
+                <img src="./books/piled3.webp" alt="Book 1">
+            </div>
+            <div class="text-center">
+                <h5>
+                    Keep your library neat and structured <br>
+                    Quickly search, sort, and manage your collection. <br>
+                    Add, remove, and update books effortlessly. <br>
+                    Store complete information for each book.
+                </h5>
+            </div>
+            <div class="book-right">
+                <img src="./books/piled4.jpg" alt="Book 2">
+            </div>
+        </div>
+    </div>
+    
     <div class="left-side" id="sidebar">
-        <button class="toggle-btn" onclick="toggleSidebar()">
+        <button class="toggle-btn" style="color: rgb(138, 90, 228);" onclick="toggleSidebar()">
             <i class="fa-solid fa-bars"></i>
         </button>
       <div class="container-fluid">
@@ -47,31 +61,31 @@
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" data-bs-toggle="tab" href="#allBooks">
-                            <i class="fa-solid fa-book" style="color: #087615;"></i>
+                            <i class="fa-solid fa-book" style="color: rgb(138, 90, 228);"></i>
                             <span class="nav-text">All Books</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#favorites">
-                            <i class="fa-solid fa-heart" style="color: #087615;"></i>
+                            <i class="fa-solid fa-heart" style="color:rgb(138, 90, 228);"></i>
                             <span class="nav-text">Favourites</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#unfavourite">
-                            <i class="fa-solid fa-heart-crack" style="color: #087615;"></i>
+                            <i class="fa-solid fa-heart-crack" style="color: rgb(138, 90, 228);"></i>
                             <span class="nav-text">Unfavourite</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#read">
-                            <i class="fa-solid fa-check" style="color: #087615;"></i>
+                            <i class="fa-solid fa-check" style="color: rgb(138, 90, 228);"></i>
                             <span class="nav-text">Read</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#unread">
-                            <i class="fa-solid fa-battery-empty" style="color: #087615;"></i>
+                            <i class="fa-solid fa-battery-empty" style="color: rgb(138, 90, 228);"></i>
                             <span class="nav-text">Unread</span>
                         </a>
                     </li>
@@ -80,8 +94,8 @@
     
            
         </div>
-         <!-- Tab Content -->
-         <div class="col-md-9 col-lg-10 p-3">
+    <!-- Tab Content -->
+        <div class="col-md-9 col-lg-10 p-3">
             <div class="tab-content">
                 <div id="allBooks" class="tab-pane fade show active">
                 </div>
@@ -156,7 +170,7 @@
         </div>
     </div>
 </div>
-<!-- <div id="bookList" class="row row-cols-1 row-cols-md-3 g-4"></div> -->
+
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-4">
