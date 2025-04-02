@@ -1,19 +1,21 @@
 
+// Toggle Sidebar Function
+function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("collapsed");
+}
 document.addEventListener("DOMContentLoaded", function () {
-    // Get references to form fields and elements
     const bookForm = document.querySelector(".needs-validation");
     const titleInput = document.getElementById("bookTitle");
     const authorInput = document.getElementById("bookAuthor");
     const genreInput = document.getElementById("bookGenre");
     const statusInput = document.getElementById("bookStatus");
     const fileInput = document.getElementById("customFile");
-    const saveButton = document.querySelector(".btn-primary"); // Save Button
+    const saveButton = document.querySelector(".btn-primary");
     const bookList = document.getElementById("bookList");
 
-    // Initialize books array from localStorage or empty array
     let books = JSON.parse(localStorage.getItem("books")) || [];
 
-    // Function to check if all required fields are filled
     function checkInputs() {
         saveButton.disabled = !(
             titleInput.value.trim() &&
@@ -22,14 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    // Attach event listeners to form fields
     [titleInput, authorInput, genreInput].forEach(input => {
         input.addEventListener("input", checkInputs);
     });
 
-    // Function to add a new book
     function addBook(event) {
-        event.preventDefault(); // Prevent form from refreshing the page
+        event.preventDefault();
 
         const title = titleInput.value.trim();
         const author = authorInput.value.trim();
@@ -42,30 +42,28 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Function to save the book in local storage and update the book list
         const saveCover = (cover) => {
             books.push({ title, author, genre, status, cover, favorite: false });
             localStorage.setItem("books", JSON.stringify(books));
-            displayBooks(); // Refresh the book list
+            displayBooks();
             bookForm.reset();
-            saveButton.disabled = true; // Disable button after saving
-            document.querySelector(".btn-close").click(); // Close modal
+            saveButton.disabled = true;
+            document.querySelector(".btn-close").click();
         };
 
         if (file) {
             const reader = new FileReader();
             reader.onload = function () {
-                saveCover(reader.result); // Use the base64 string for the cover image
+                saveCover(reader.result);
             };
             reader.readAsDataURL(file);
         } else {
-            saveCover("https://via.placeholder.com/150"); // Default cover if no file is selected
+            saveCover("https://via.placeholder.com/150");
         }
     }
 
-    // Function to display books
     function displayBooks(filteredBooks = books) {
-        bookList.innerHTML = ""; // Clear the existing list
+        bookList.innerHTML = "";
         filteredBooks.forEach((book, index) => {
             const card = document.createElement("div");
             card.classList.add("col");
@@ -81,39 +79,69 @@ document.addEventListener("DOMContentLoaded", function () {
                         <button class="btn ${book.favorite ? "btn-success" : "btn-warning"}" onclick="toggleFavorite(${index})">
                             ${book.favorite ? "Unfavorite" : "Favorite"}
                         </button>
+                        <button class="btn btn-primary" onclick="editBook(${index})">Edit</button> <!-- Edit Button -->
                     </div>
                 </div>
             `;
             bookList.appendChild(card);
         });
     }
+    function editBook(index) {
+        const book = books[index];
+        // Pre-fill the form with the book's current data
+        document.getElementById("bookTitle").value = book.title;
+        document.getElementById("bookAuthor").value = book.author;
+        document.getElementById("bookGenre").value = book.genre;
+        document.getElementById("bookStatus").value = book.status;
+        // Show the modal
+        const modal = new bootstrap.Modal(document.getElementById("exampleModalCenter"));
+        modal.show();
+    
+        // Handle the form submission to update the book data
+        document.querySelector(".needs-validation").onsubmit = function (event) {
+            event.preventDefault();
+    
+            // Update the book information
+            book.title = document.getElementById("bookTitle").value;
+            book.author = document.getElementById("bookAuthor").value;
+            book.genre = document.getElementById("bookGenre").value;
+            book.status = document.getElementById("bookStatus").value;
+    
+            // Save updated book list to localStorage
+            localStorage.setItem("books", JSON.stringify(books));
+    
+            // Refresh the book list display
+            displayBooks();
+    
+            // Close the modal
+            modal.hide();
+        };
+    }
+    
 
-    // Function to delete a book
     window.deleteBook = function (index) {
         if (confirm("Are you sure you want to delete this book?")) {
-            books.splice(index, 1); // Remove book from the array
-            localStorage.setItem("books", JSON.stringify(books)); // Update localStorage
-            displayBooks(); // Refresh the book list
+            books.splice(index, 1);
+            localStorage.setItem("books", JSON.stringify(books));
+            displayBooks();
         }
     };
 
-    // Function to toggle favorite status of a book
     window.toggleFavorite = function (index) {
-        books[index].favorite = !books[index].favorite; // Toggle the favorite status
-        localStorage.setItem("books", JSON.stringify(books)); // Save updated list to localStorage
-        displayBooks(); // Refresh the book list to show updated favorite status
+        books[index].favorite = !books[index].favorite;
+        localStorage.setItem("books", JSON.stringify(books));
+        displayBooks();
     };
 
-    // Handle the tab click functionality to filter books
     document.querySelectorAll(".nav-link").forEach(navItem => {
         navItem.addEventListener("click", function (event) {
-            const target = event.target.getAttribute("href").substring(1); // Get the target tab's ID
-            
-            // Filter books based on the tab clicked
-            let filteredBooks = [];
-            if (target === "allBooks") {
-                filteredBooks = books;
-            } else if (target === "favorites") {
+            event.preventDefault();
+            document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
+            this.classList.add("active");
+            const target = this.getAttribute("href").substring(1);
+            let filteredBooks = books;
+
+            if (target === "favorites") {
                 filteredBooks = books.filter(book => book.favorite);
             } else if (target === "unfavourite") {
                 filteredBooks = books.filter(book => !book.unfavorite);
@@ -123,15 +151,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 filteredBooks = books.filter(book => book.status === "Unread");
             }
 
-            displayBooks(filteredBooks); // Display the filtered books
+            displayBooks(filteredBooks);
         });
     });
 
-    // Initial display of all books
     displayBooks();
-    checkInputs(); // Validate inputs on page load
-
-    // Listen for form submission to add a new book
+    checkInputs();
     bookForm.addEventListener("submit", addBook);
 });
 
