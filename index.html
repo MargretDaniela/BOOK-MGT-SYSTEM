@@ -11,7 +11,7 @@
 <body>
     <!-- Top Navigation Bar -->
     <div class="">
-        <nav class="navbar navbar-light" style="padding: 10px;  display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <nav class="navbar navbar-light" style="padding: 10px;  display: flex; flex-direction: column; align-items: center; text-align: center;background: white;">
             <div style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 800px; margin-top: 10px;">
                 <div class="search-container" style="display: flex; align-items: center; flex-grow: 1; margin-right: 10px;">
                     <i class="fa-solid fa-magnifying-glass" style="color: rgb(138, 90, 228);"></i>
@@ -19,6 +19,8 @@
                      placeholder="Search by title or author"
                      aria-label="Search"
                     onkeyup="searchBooks(this)">
+                    <i class="fa-solid fa-magnifying-glass" style="color: black;"></i>
+                    <input class="search-input" type="search" placeholder="Search by title or author" aria-label="Search">
                 </div>
 
                 <button class="btn btn-outline-success my-2 my-sm-0" 
@@ -173,7 +175,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="container mt-4">
     <div class="row justify-content-center">

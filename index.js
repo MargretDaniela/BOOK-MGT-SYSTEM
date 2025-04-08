@@ -1,3 +1,4 @@
+
 // Toggle Sidebar Function
 function toggleSidebar() {
     let sidebar = document.getElementById("sidebar");
@@ -182,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (target === "favorites") {
                 filteredBooks = books.filter(book => book.favorite);
             } else if (target === "unfavourite") {
-                filteredBooks = books.filter(book => !book.favorite);
+                filteredBooks = books.filter(book => !book.unfavorite);
             } else if (target === "read") {
                 filteredBooks = books.filter(book => book.status === "Read");
             } else if (target === "unread") {
