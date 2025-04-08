@@ -3,16 +3,20 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to top, rgb(248, 248, 248), rgb(110, 194, 228));
+    /* background: linear-gradient(to top, rgb(248, 248, 248), rgb(110, 194, 228)); */
+    background-color: rgba(215, 200, 245, 0.37);
 }
 
 .middle {
     background-color: rgb(138, 90, 228);
+    margin-top: 70px;
+    margin-left: 100px;
     top: 65px; /* Move it up */
     left: 100px; /* Reduce left margin to shift left */
     color: white !important;
     left: 100px;
     position: fixed;
+    width: 100%;
     width: calc(100% - 100px);
     padding: 20px;
     text-align: center;
@@ -54,7 +58,6 @@ body {
     text-align: center;
 }
 
-/* Navbar Title */
 .navbar-brand {
     font-size: 2.5rem;
     font-weight: bold;
@@ -62,7 +65,6 @@ body {
     text-decoration: none;
 }
 
-/* Book Container (flexbox for side-by-side books) */
 .book-container {
     display: flex;
     gap: 20px;
@@ -70,7 +72,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* Book Styles */
 .book {
     position: relative;
     flex: 0 0 200px;
@@ -82,14 +83,12 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Book Image Styling */
 .book img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* Text centered inside the book */
 .book-text {
     position: absolute;
     margin-top: 200px;
@@ -105,9 +104,45 @@ body {
     border-radius: 5px;
 }
 
-/* Hover effect for books */
 .book:hover {
     transform: scale(1.05);
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    width: auto;
+}
+
+.book-left, .book-right {
+    flex: 0 0 180px; 
+    height: 200px; 
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-left: 200px;
+    margin-right: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateY(-10px);
+}
+
+.book-left img, .book-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-center h5 {
+    flex: 1;
+    font-size: 1.3rem;
+    color: #555;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 600px;
+    
 }
 
 .search-container {
@@ -160,6 +195,21 @@ body {
     white-space: nowrap; 
     z-index: 1001; 
 }
+.nav-link {
+    padding: 15px;
+    font-size: 1.2rem;
+    color: rgb(138, 90, 228); 
+    transition: background-color 0.3s, color 0.3s;
+}
+.nav-link.active {
+    color: white; 
+    font-weight: bold;
+    background-color: rgb(177, 150, 227);
+    
+}
+.nav-link:hover {
+    background-color: rgb(179, 154, 225); 
+}
 .navbar {
     height: auto;
     display: flex;
@@ -172,11 +222,12 @@ body {
     top: 0;
     z-index: 1000; 
     background-color: rgb(255, 255, 255) !important; 
-    margin-left: 200px;
+    margin-left: 100px;
    
 }
 .left-side.collapsed {
     width: 150px;
+    margin-left: -20px;
 }
 .toggle-btn {
     background: none;
@@ -220,15 +271,7 @@ ul.nav .nav-item button {
 span{
     color: black;
 }
-.forms {
-    max-width: 450px; 
-    margin: auto;
-    padding: 20px;
-    background: rgb(112, 72, 72);
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 200px;
-}
+
 
 .close-icon {
     color:rgb(138, 90, 228);
@@ -255,16 +298,24 @@ select.form-control {
 }
 .navbar-brand{
     color: white !important;
-    font-size: 250%;
+    font-size: 350%;
     display: block; 
     text-align: center;
 }
 .add-book{
     float: left;
 }
+.modal-content{
+    background-color: rgba(182, 153, 238, 0.664);
+    color: white;
+    font-weight: bolder;
+}
 #bookList {
     display: flex;
     flex-wrap: wrap;
+    margin-left: -145px;
+    margin-top: 350px;
+    padding: 50px;
     margin-left: 80px;
     margin-top: 240px;
     padding: 20px;
@@ -283,19 +334,26 @@ select.form-control {
     height: 200px; 
     object-fit: cover; 
 }
-/* Tablet - Adjustments for medium screens */
-@media (max-width: 1024px) and (min-width: 769px) {
+
+@media (max-width: 1317px) and (min-width: 769px) {
     .left-side {
-        width: 150px;
+        width: 200px;
     }
 
     #bookList {
-        margin-left: 150px;
+        margin-left: 40px;
+
     }
 
     .left-side.collapsed + #bookList {
         margin-left: 80px;
     }
+    .search-container{
+        margin-left: 300px;
+    }
+    .middle{
+        max-height: 300px;
+
 }
 /* Responsive styles for smaller screens */
  @media (max-width: 768px) {
@@ -303,7 +361,13 @@ select.form-control {
         flex-direction: column;
         align-items: center;
     }
-    .book-left, .book-right {
-        margin-bottom: 20px;
+    .content{
+        max-height: 300px;
     }
+    .text-center h5{
+        text-align: center;
+        line-height: 12px;
+        font-size: 100%;
+    }
+}
 }  
