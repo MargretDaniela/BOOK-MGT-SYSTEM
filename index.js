@@ -1,4 +1,4 @@
-// Toggle Sidebar Function
+
 function toggleSidebar() {
     let sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("collapsed");
@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookList = document.getElementById("bookList");
 
     let books = JSON.parse(localStorage.getItem("books")) || [];
+    let isEditing = false;
+    let editingIndex = -1;
 
     function checkInputs() {
         saveButton.disabled = !(
@@ -43,12 +45,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const saveCover = (cover) => {
-            books.push({ title, author, genre, status, cover, favorite: false });
+            if (isEditing && editingIndex > -1) {
+                books[editingIndex] = { 
+                    ...books[editingIndex], 
+                    title, 
+                    author, 
+                    genre, 
+                    status, 
+                    cover 
+                };
+            } else {
+                books.push({ title, author, genre, status, cover, favorite: false });
+            }
+
             localStorage.setItem("books", JSON.stringify(books));
             displayBooks();
             bookForm.reset();
             saveButton.disabled = true;
             document.querySelector(".btn-close").click();
+
+            isEditing = false;
+            editingIndex = -1;
         };
 
         if (file) {
@@ -58,7 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
             };
             reader.readAsDataURL(file);
         } else {
-            saveCover("https://via.placeholder.com/150");
+            const existingCover = isEditing ? books[editingIndex].cover : "https://via.placeholder.com/150";
+            saveCover(existingCover);
         }
     }
 
@@ -79,45 +97,28 @@ document.addEventListener("DOMContentLoaded", function () {
                         <button class="btn ${book.favorite ? "btn-success" : "btn-warning"}" onclick="toggleFavorite(${index})">
                             ${book.favorite ? "Unfavorite" : "Favorite"}
                         </button>
-                        <button class="btn btn-primary" onclick="editBook(${index})">Edit</button> <!-- Edit Button -->
+                        <button class="btn btn-primary" onclick="editBook(${index})">Edit</button>
                     </div>
                 </div>
             `;
             bookList.appendChild(card);
         });
     }
-    function editBook(index) {
+
+    window.editBook = function (index) {
         const book = books[index];
-        // Pre-fill the form with the book's current data
+
+        isEditing = true;
+        editingIndex = index;
+
         document.getElementById("bookTitle").value = book.title;
         document.getElementById("bookAuthor").value = book.author;
         document.getElementById("bookGenre").value = book.genre;
         document.getElementById("bookStatus").value = book.status;
-        // Show the modal
+
         const modal = new bootstrap.Modal(document.getElementById("exampleModalCenter"));
         modal.show();
-    
-        // Handle the form submission to update the book data
-        document.querySelector(".needs-validation").onsubmit = function (event) {
-            event.preventDefault();
-    
-            // Update the book information
-            book.title = document.getElementById("bookTitle").value;
-            book.author = document.getElementById("bookAuthor").value;
-            book.genre = document.getElementById("bookGenre").value;
-            book.status = document.getElementById("bookStatus").value;
-    
-            // Save updated book list to localStorage
-            localStorage.setItem("books", JSON.stringify(books));
-    
-            // Refresh the book list display
-            displayBooks();
-    
-            // Close the modal
-            modal.hide();
-        };
-    }
-    
+    };
 
     window.deleteBook = function (index) {
         if (confirm("Are you sure you want to delete this book?")) {
@@ -144,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (target === "favorites") {
                 filteredBooks = books.filter(book => book.favorite);
             } else if (target === "unfavourite") {
-                filteredBooks = books.filter(book => !book.unfavorite);
+                filteredBooks = books.filter(book => !book.favorite);
             } else if (target === "read") {
                 filteredBooks = books.filter(book => book.status === "Read");
             } else if (target === "unread") {
@@ -159,4 +160,3 @@ document.addEventListener("DOMContentLoaded", function () {
     checkInputs();
     bookForm.addEventListener("submit", addBook);
 });
-
