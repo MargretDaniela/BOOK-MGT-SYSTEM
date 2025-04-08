@@ -14,20 +14,23 @@
         <nav class="navbar navbar-light" style="padding: 10px;  display: flex; flex-direction: column; align-items: center; text-align: center;">
             <div style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 800px; margin-top: 10px;">
                 <div class="search-container" style="display: flex; align-items: center; flex-grow: 1; margin-right: 10px;">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input class="search-input" type="search" placeholder="Search by title or author" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass" style="color: rgb(138, 90, 228);"></i>
+                    <input class="search-input" type="search"
+                     placeholder="Search by title or author"
+                     aria-label="Search"
+                    onkeyup="searchBooks(this)">
                 </div>
 
-            <button class="btn btn-outline-success my-2 my-sm-0" 
-                style="padding: 6px 12px; font-size: 16px; white-space: nowrap;" 
-                type="button" 
-                data-bs-toggle="modal" 
-                data-bs-target="#exampleModalCenter">
-                + Add Book
-            </button>
-                </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" 
+                    style="padding: 6px 12px; font-size: 16px; white-space: nowrap; background-color:rgb(138, 90, 228); color:white;" 
+                    type="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#exampleModalCenter">
+                    + Add Book
+                </button>
                 
             </div>
+            
         </nav>
     </div>
     <div class="middle">
@@ -38,10 +41,10 @@
             </div>
             <div class="text-center">
                 <h5>
-                    Keep your library neat and structured <br>
-                    Quickly search, sort, and manage your collection. <br>
+                    <b>Keep your library neat and structured. <br>
+                    <br>Quickly search, sort, and manage your collection. <br>
                     Add, remove, and update books effortlessly. <br>
-                    Store complete information for each book.
+                    Store complete information for each book.</b>
                 </h5>
             </div>
             <div class="book-right">
@@ -170,6 +173,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="container mt-4">
     <div class="row justify-content-center">

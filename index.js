@@ -3,6 +3,75 @@ function toggleSidebar() {
     let sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("collapsed");
 }
+// Declare books globally at the top
+let books = JSON.parse(localStorage.getItem("books")) || []; 
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to create a book card
+  function createBookCard(book) {
+    const card = document.createElement("div");
+    card.classList.add("col");
+
+    card.innerHTML = `
+      <div class="card h-100">
+        <img src="${book.cover}" class="card-img-top" alt="${book.title}">
+        <div class="card-body">
+          <h5 class="card-title">${book.title}</h5>
+          <p class="card-text">Author: ${book.author}</p>
+          <p class="card-text"><strong>Genre:</strong> ${book.genre}</p>
+          <p class="card-text"><strong>Status:</strong> ${book.status}</p>
+          <button class="btn btn-danger" onclick="deleteBook(${book.id})">Delete</button>
+          <button class="btn ${book.favorite ? "btn-success" : "btn-warning"}" onclick="toggleFavorite(${book.id})">
+            ${book.favorite ? "Unfavorite" : "Favorite"}
+          </button>
+          <button class="btn btn-primary" onclick="editBook(${book.id})">Edit</button>
+        </div>
+      </div>
+    `;
+    return card;
+  }
+
+  // Function to display books
+  function displayBooks(filteredBooks = books) {
+    const bookList = document.getElementById("bookList");
+    bookList.innerHTML = ""; // Clear current list
+
+    filteredBooks.forEach(book => {
+      bookList.appendChild(createBookCard(book));
+    });
+  }
+
+  // Function to search books based on input
+  function searchBooks(input) {
+    let query = input.value.toLowerCase().trim();
+    // Filter books based on the query
+    let filteredBooks = books.filter(book => 
+      book.title.toLowerCase().includes(query) || 
+      book.author.toLowerCase().includes(query)
+    );
+
+    // Clear and update book list with search results
+    let bookList = document.getElementById("bookList");
+    bookList.innerHTML = ""; // Clear current list
+
+    filteredBooks.forEach(book => {
+      bookList.appendChild(createBookCard(book));
+    });
+
+    // If no books match, show a "No results found" message
+    if (filteredBooks.length === 0) {
+      bookList.innerHTML = `<p class="text-center text-muted">No books found</p>`;
+    }
+  }
+
+  // Add event listener to search input field for live filtering
+  const searchInput = document.querySelector(".search-input");
+  searchInput.addEventListener("input", function () {
+    searchBooks(this);
+  });
+
+});
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const bookForm = document.querySelector(".needs-validation");
@@ -86,37 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
             bookList.appendChild(card);
         });
     }
-    function editBook(index) {
-        const book = books[index];
-        // Pre-fill the form with the book's current data
-        document.getElementById("bookTitle").value = book.title;
-        document.getElementById("bookAuthor").value = book.author;
-        document.getElementById("bookGenre").value = book.genre;
-        document.getElementById("bookStatus").value = book.status;
-        // Show the modal
-        const modal = new bootstrap.Modal(document.getElementById("exampleModalCenter"));
-        modal.show();
-    
-        // Handle the form submission to update the book data
-        document.querySelector(".needs-validation").onsubmit = function (event) {
-            event.preventDefault();
-    
-            // Update the book information
-            book.title = document.getElementById("bookTitle").value;
-            book.author = document.getElementById("bookAuthor").value;
-            book.genre = document.getElementById("bookGenre").value;
-            book.status = document.getElementById("bookStatus").value;
-    
-            // Save updated book list to localStorage
-            localStorage.setItem("books", JSON.stringify(books));
-    
-            // Refresh the book list display
-            displayBooks();
-    
-            // Close the modal
-            modal.hide();
-        };
-    }
     
 
     window.deleteBook = function (index) {
@@ -159,4 +197,5 @@ document.addEventListener("DOMContentLoaded", function () {
     checkInputs();
     bookForm.addEventListener("submit", addBook);
 });
+
 
