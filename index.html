@@ -13,14 +13,12 @@
     <div class="">
         <nav class="navbar navbar-light" style="padding: 10px;  display: flex; flex-direction: column; align-items: center; text-align: center;background: white;">
             <div style="display: flex; align-items: center; justify-content: center; width: 100%; max-width: 800px; margin-top: 10px;">
-                <div class="search-container" style="display: flex; align-items: center; flex-grow: 1; margin-right: 10px;">
-                    <i class="fa-solid fa-magnifying-glass" style="color: rgb(138, 90, 228);"></i>
+                <div class="search-container" style="display: flex; align-items: center; flex-grow: 1;">
                     <input class="search-input" type="search"
                      placeholder="Search by title or author"
                      aria-label="Search"
                     onkeyup="searchBooks(this)">
-                    <i class="fa-solid fa-magnifying-glass" style="color: black;"></i>
-                    <input class="search-input" type="search" placeholder="Search by title or author" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass" style="color: rgb(138, 90, 228);"></i>
                 </div>
 
                 <button class="btn btn-outline-success my-2 my-sm-0" 
@@ -42,11 +40,12 @@
                 <img src="./books/piled3.webp" alt="Book 1">
             </div>
             <div class="text-center">
-                <h5>
-                    <b>Keep your library neat and structured. <br>
-                    <br>Quickly search, sort, and manage your collection. <br>
-                    Add, remove, and update books effortlessly. <br>
-                    Store complete information for each book.</b>
+                <h5 class="bouncing-text">
+                <span class="line" style="animation-delay: 0.5s;"><b><i>Keep your library neat and structured.</i></b></span><br>
+                <span class="line" style="animation-delay: 5s;"><b><i>Quickly search, sort, and manage your collection.</i></b></span><br>
+                <span class="line" style="animation-delay: 5s;"><b><i>Add, remove, and update books effortlessly.</i></b></span><br>
+                <span class="line" style="animation-delay: 5s;"><b><i>Store complete information for each book.</i></b></span>
+            </h5>
                 </h5>
             </div>
             <div class="book-right">
@@ -66,31 +65,31 @@
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" data-bs-toggle="tab" href="#allBooks">
-                            <i class="fa-solid fa-book" style="color: rgb(138, 90, 228);"></i>
+                            <i class="fa-solid fa-book" ></i>
                             <span class="nav-text">All Books</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#favorites">
-                            <i class="fa-solid fa-heart" style="color:rgb(138, 90, 228);"></i>
+                            <i class="fa-solid fa-star" ></i>
                             <span class="nav-text">Favourites</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#unfavourite">
-                            <i class="fa-solid fa-heart-crack" style="color: rgb(138, 90, 228);"></i>
+                            <i class="fa-regular fa-star"></i>
                             <span class="nav-text">Unfavourite</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#read">
-                            <i class="fa-solid fa-check" style="color: rgb(138, 90, 228);"></i>
+                            <i class="fa-solid fa-book-open-reader"></i>
                             <span class="nav-text">Read</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#unread">
-                            <i class="fa-solid fa-battery-empty" style="color: rgb(138, 90, 228);"></i>
+                            <i class="fa-solid fa-book-medical"></i>
                             <span class="nav-text">Unread</span>
                         </a>
                     </li>
@@ -99,7 +98,7 @@
     
            
         </div>
-    <!-- Tab Content -->
+        <!-- Tab Content -->
         <div class="col-md-9 col-lg-10 p-3">
             <div class="tab-content">
                 <div id="allBooks" class="tab-pane fade show active">
@@ -124,7 +123,7 @@
         
        
   <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <!-- Modal Header -->

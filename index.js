@@ -8,7 +8,6 @@ function toggleSidebar() {
 let books = JSON.parse(localStorage.getItem("books")) || []; 
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Function to create a book card
   function createBookCard(book) {
     const card = document.createElement("div");
     card.classList.add("col");
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to display books
   function displayBooks(filteredBooks = books) {
     const bookList = document.getElementById("bookList");
-    bookList.innerHTML = ""; // Clear current list
+    bookList.innerHTML = ""; 
 
     filteredBooks.forEach(book => {
       bookList.appendChild(createBookCard(book));
@@ -45,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to search books based on input
   function searchBooks(input) {
     let query = input.value.toLowerCase().trim();
-    // Filter books based on the query
     let filteredBooks = books.filter(book => 
       book.title.toLowerCase().includes(query) || 
       book.author.toLowerCase().includes(query)
@@ -53,13 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Clear and update book list with search results
     let bookList = document.getElementById("bookList");
-    bookList.innerHTML = ""; // Clear current list
+    bookList.innerHTML = "";
 
     filteredBooks.forEach(book => {
       bookList.appendChild(createBookCard(book));
     });
-
-    // If no books match, show a "No results found" message
     if (filteredBooks.length === 0) {
       bookList.innerHTML = `<p class="text-center text-muted">No books found</p>`;
     }
@@ -72,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const bookForm = document.querySelector(".needs-validation");
